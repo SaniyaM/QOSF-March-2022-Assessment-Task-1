@@ -33,12 +33,6 @@ init_vec_1[263] = 1 / np.sqrt(4)
 init_vec_1[136] = 1 / np.sqrt(4)
 init_vec_1[73] = 1 / np.sqrt(4)
 init_vec_1[33] = 1 / np.sqrt(4)
-####
-# init_vec[261] = 1/np.sqrt(5)
-# init_vec[135] = 1 / np.sqrt(5)
-# init_vec[72] = 1/np.sqrt(5)
-# init_vec[41] = 1 / np.sqrt(5)
-# init_vec[17] = 1/np.sqrt(5)
 
 #DOUBLE SIZE QUANTUM REGISTERS
 value_bits = QuantumRegister(2 * (l + L), name='v')
@@ -61,12 +55,12 @@ qcircuit.append(DraperAdder, value_bits)
 # qcircuit.append(DraperAdder, value_bits)
 
 # PHASE ORACLE
-for i in range(0, l):
+for i in range(0, l-1):
     qcircuit.x(value_bits[l + L + i])
 
 qcircuit.append(CPhaseGate(np.pi, None).control(l - 2, None, 7), value_bits[l + L:2 * l + L])
 
-for i in range(0, l):
+for i in range(0, l-1):
     qcircuit.x(value_bits[l + L + i])
 
 
@@ -118,7 +112,7 @@ counts_values = list(counts.values())
 counts_keys = list(counts.keys())
 
 for i in range(len(counts_values)):
-    if counts_values[i] > 11:
+    if counts_values[i] > 10:
         print(counts_keys[i])
         output_vector.append(counts_keys[i])
 

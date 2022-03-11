@@ -112,7 +112,7 @@ counts_values = list(counts.values())
 counts_keys = list(counts.keys())
 
 for i in range(len(counts_values)):
-    if counts_values[i] > 10:
+    if counts_values[i] > 0.05*nshots:
         print(counts_keys[i])
         output_vector.append(counts_keys[i])
 
